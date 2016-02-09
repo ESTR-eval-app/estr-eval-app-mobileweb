@@ -1,0 +1,35 @@
+#nextButton {
+	position:fixed;
+	bottom: 25px;
+	right: 30px;
+}
+
+
+
+.question-text-panel {
+	position: absolute;
+	width: 80%;
+	top: 22%;
+}
+
+.question-text-panel h3
+{
+	text-align: center;
+}
+
+.center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.question-scale-panel {
+	position: absolute;
+	text-align: center;
+	top: 45%;
+	width: 80%;
+}
+
+.question-scale-panel img {
+	margin: 30px;
+}
