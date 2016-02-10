@@ -1,35 +1,22 @@
 #nextButton {
-	position:fixed;
+	position: fixed;
 	bottom: 25px;
 	right: 30px;
 }
 
-
-
-.question-text-panel {
-	position: absolute;
-	width: 80%;
-	top: 22%;
+#questionContainer {
+	transform: translateY(120%);
 }
 
-.question-text-panel h3
-{
-	text-align: center;
-}
+/*.horizontal-center {*/
+	/*display: block;*/
+	/*position: absolute;*/
+	/*margin-left: auto;*/
+	/*margin-right: auto;*/
+/*}*/
 
-.center-block {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
+#questionTextPanel { text-align: center; }
 
-.question-scale-panel {
-	position: absolute;
-	text-align: center;
-	top: 45%;
-	width: 80%;
-}
+#questionScalePanel { text-align: center; }
 
-.question-scale-panel img {
-	margin: 30px;
-}
+#questionScalePanel img { margin: 30px; }
