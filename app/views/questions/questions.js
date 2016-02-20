@@ -36,7 +36,9 @@ angular.module('app.questions', ['ngRoute'])
         // TODO if not anonymous, get name
 
         $scope.response = {
+          evaluationId : $scope.evaluation.id,
           questionResponses : [$scope.evaluation.questions.length]
+          //name :
         };
 
       }
@@ -77,7 +79,7 @@ angular.module('app.questions', ['ngRoute'])
     $scope.finishEvalBtnClick = function() {
 
       $scope.response.date = new Date();
-      // TODO name
+      // TODO ensure name is sent
 
       //todo endpoint does not exist yet
       $http.post('http:' + envService.read('apiUrl') + '/responses', $scope.response)
