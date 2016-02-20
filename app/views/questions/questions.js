@@ -11,18 +11,10 @@ angular.module('app.questions', ['ngRoute'])
 
   .controller('QuestionsController', ['$routeParams', '$scope', '$http', '$location', 'envService', function($routeParams, $scope, $http, $location, envService) {
 
-    $scope.response = {};
 
-    // reference to response buttons
-    $scope.buttons = [4];
 
     // current question number
     $scope.questionIndex = 0;
-
-    // index of selected response
-    $scope.selectedResponse = -1;
-
-    $scope.scale = Array.apply( null, { length: 4 } );
 
     (function getEvalQuestions() {
       var evalId = $routeParams.evalId;
@@ -35,6 +27,11 @@ angular.module('app.questions', ['ngRoute'])
         console.log(response);
         console.log('retrieved successfully');
         console.log($scope.evaluation);
+
+        $scope.response = {
+          questionResponses : [$scope.evaluation.questions.length]
+        };
+
         // TODO handle no questions
         // TODO if not anonymous, get name
       }
@@ -49,23 +46,12 @@ angular.module('app.questions', ['ngRoute'])
     /**
      * Handler for Next button clicks.
      */
+
     $scope.nextClick = function () {
-      console.log("next Button Clicked");
+      console.log("response recorded:");
+      console.log($scope.response.questionResponses[$scope.questionIndex]);
 
-      // todo save response
-      //faces?
-      //descriptive?
-
-      var questionResponse = {
-        question : $scope.questionIndex,
-        response : $scope.selectedResponse
-      };
-
-      //window.localStorage["q" + $scope.evaluation.questions[$scope.questionIndex].id] = parseInt($scope.selectedResponse);
-      //console.log("question " + ($scope.questionIndex + 1) + " response saved " + window.localStorage["q" + $scope.evaluation.questions[$scope.questionIndex].id]);
-
-      // todo advance to next question
-      $scope.selectedResponse = -1;
+      // advance to next question
       $scope.questionIndex++;
 
       // check if end of survey reached
@@ -73,70 +59,28 @@ angular.module('app.questions', ['ngRoute'])
         console.log("End of survey");
 
         // if completed
-        //$state.go('afterSurvey');
-        // TODO show finished msg
-        return;
+        $("#questionTextPanel").hide();
+        $("#evalCompleteModal").modal("show");
       }
-
-      // clear selections
-      //for (var i in $scope.buttons) {
-      //  $scope.buttons[i].className = "itembutton button";
-      //}
-
-      // hide next button
-
-      $("#nextButton").hide();
-
-    };
-
-    /**
-     * Handler for response button clicks. Controls button style on selection and picking responses.
-     * @param num element id of the button clicked
-     */
-    $scope.numSelect = function numSelect(num) {
-
-
-      //console.log(num + " passed to numSelect");
-
-      // array of button elements for the current question
-      for (var i = 0; i < $scope.buttons.length; i++) {
-        var button = document.getElementById(i);
-        //console.log("looping " + i + " " + button);
-        $scope.buttons[i] = button;
-      }
-
-      //console.log("buttons array: " + scope.buttons);
-
-      // button clicked by user
-      var buttonPushed = document.getElementById(num);
-
-      //console.log("button " + buttonPushed.innerHTML + " pushed");
-
-      // show all buttons as deselected
-      //for (var i in $scope.buttons) {
-      //  $scope.buttons[i].className = "itembutton button";
-      //}
-
-      // apply selected style to button clicked by user
-      //buttonPushed.className += (" selecteditembutton");
-
-      $("#nextButton").fadeIn();
-
     };
 
     $scope.playQuestionAudio = function() {
-      var file = $scope.evaluation.questions[questionIndex].audioPath;
+      var file = $scope.evaluation.questions[$scope.questionIndex].audioPath;
       //TODO play sound
     }
 
-  }])
+    $scope.finishEvalBtnClick = function() {
+      //todo  send responses
 
-.directive('scaleDirective', function () {
-  return {
-    link: function (scope, element) {
-      element.bind('click', function () {
-        scope.numSelect(element.attr('id'));
-      });
+      //todo  show result
+      //todo bind error message to modal?
+
+      //todo on success, close modal and show thank you
+      $("#evalCompleteModal").modal("hide");
+      $("#responseSentMessage").show();
+
+
+
     }
-  }
-  });
+
+  }]);

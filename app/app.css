@@ -4,8 +4,8 @@
 	right: 35px;
 }
 
-#questionContainer {
-	transform: translateY(70%);
+.questionContainer {
+	transform: translateY(50%);
 }
 
 /*.horizontal-center {*/

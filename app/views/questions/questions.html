@@ -1,44 +1,73 @@
-<div id="questionContainer" class="center-block">
-	<!--Question-->
-	<div id="questionTextPanel" class="well">
-		<button type="submit" class="btn btn-default pull-right" ng-click="playQuestionAudio()">
-			<span class="glyphicon glyphicon-volume-up"></span></button>
-		<h3>{{evaluation.questions[questionIndex].text}}</h3>
-
-	</div>
-
-
-
-
-	<div id="questionScalePanel">
-		<!--Faces Scale-->
-		<div ng-show="evaluation.questions[questionIndex].type === 'Faces'">
-		<label>
-			<input type="radio" name="faces" value="1"/>
-			<img src="./img/faces/face1.png"/>
-		</label>
-			<label>
-				<input type="radio" name="faces" value="2"/>
-				<img src="./img/faces/face2.png"/>
-			</label>
-			<label>
-				<input type="radio" name="faces" value="3"/>
-				<img src="./img/faces/face4.png"/>
-			</label>
-			<label>
-				<input type="radio" name="faces" value="4"/>
-				<img src="./img/faces/face5.png"/>
-			</label>
+<!--eval complete change modal-->
+<div class="modal fade" id="evalCompleteModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="completedModalLabel">Almost Done!</h4>
+			</div>
+			<div class="modal-body">
+				<button type="button" class="btn btn-info pull-right" ng-click="finishEvalBtnClick()">Finish</button>
+				<p>Click "Finish" to complete your evaluation.</p>
+			</div>
 		</div>
-
-		<!--Descriptive response -->
-		<div class="form-group" ng-show="evaluation.questions[questionIndex].type === 'Descriptive'"> <textarea ng-model="editQuestion.text" class="form-control ng-pristine ng-valid ng-touched" rows="4"></textarea></div>
 
 	</div>
 </div>
+</div>
 
+
+<form name="questionForm" novalidate>
+	<div class="questionContainer center-block">
+
+		<!--Thank you message-->
+		<div id="responseSentMessage" class="jumbotron alert-success" style="display: none">
+			<h3 class="center-block">Thank you for completing the evaluation.</h3>
+			<p>You may close this application.</p>
+		</div>
+
+		<!--Question-->
+		<div id="questionTextPanel" class="well">
+			<button type="submit" class="btn btn-default pull-right" ng-click="playQuestionAudio()">
+				<span class="glyphicon glyphicon-volume-up"></span></button>
+			<h3>{{evaluation.questions[questionIndex].text}}</h3>
+
+		</div>
+
+		<div id="questionScalePanel">
+			<!--Faces Scale-->
+			<div ng-show="evaluation.questions[questionIndex].type === 'Faces'">
+				<label>
+					<input type="radio" name="faces" value="1" ng-model="response.questionResponses[questionIndex]"
+					       ng-required="true"/>
+					<img src="./img/faces/face1.png"/>
+				</label>
+				<label>
+					<input type="radio" name="faces" value="2" ng-model="response.questionResponses[questionIndex]"/>
+					<img src="./img/faces/face2.png"/>
+				</label>
+				<label>
+					<input type="radio" name="faces" value="3" ng-model="response.questionResponses[questionIndex]"/>
+					<img src="./img/faces/face4.png"/>
+				</label>
+				<label>
+					<input type="radio" name="faces" value="4" ng-model="response.questionResponses[questionIndex]"/>
+					<img src="./img/faces/face5.png"/>
+				</label>
+			</div>
+
+			<!--Descriptive response -->
+			<div class="form-group" ng-show="evaluation.questions[questionIndex].type === 'Descriptive'"><textarea
+					ng-model="response.questionResponses[questionIndex]" class="form-control" rows="4"
+					ng-required="true"></textarea></div>
+
+		</div>
+
+	</div>
 
 	<!-- Navigation -->
-	<button class="btn btn-lg btn-info" style="display:none" id="nextButton" ng-click="nextClick()">
+	<button class="btn btn-lg btn-info" ng-hide="questionForm.$invalid || questionForm.$pristine" type="submit"
+	        id="nextButton" ng-click="nextClick()">
 		Next
 	</button>
+
+</form>
