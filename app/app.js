@@ -3,9 +3,28 @@
 // Declare app level module which depends on views, and components
 angular.module('app', [
   'ngRoute',
-  'app.question'
+  'environment',
+  'app.questions',
+  'app.select'
 
 ]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/question'}); // todo initial state
+config(['$routeProvider', 'envServiceProvider', function($routeProvider, envServiceProvider) {
+  $routeProvider.otherwise({redirectTo: '/select'});
+
+  envServiceProvider.config({
+    domains: {
+      development: ["localhost"],
+      production: ["stevenlyall.me"]
+    },
+    vars: {
+      development: {
+        apiUrl: "//localhost:3000/api"
+      },
+      production: {
+        apiUrl: "//stevenlyall.me:3000/api"
+      }
+    }
+  });
+
+  envServiceProvider.check();
 }]);

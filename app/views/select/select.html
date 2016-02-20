@@ -1,0 +1,23 @@
+<div class="container">
+
+	<div class="col-md-6">
+	<h2>Evaluations</h2>
+	<p class="help-block">Select an evaluation to complete:</p>
+
+		<div class="panel panel-warning" ng-show="!evaluations.length">
+			<div class="panel-body">
+				<p>No evaluations available.</p>
+			</div>
+		</div>
+
+		<div class="panel panel-primary" ng-repeat="evaluation in evaluations">
+			<div class="panel-body">
+				<h4>{{evaluation.name}}</h4>
+				<button type="button" class="btn btn-default btn-lg pull-right" ng-click="startEvaluation(evaluation.id)">
+					<span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Start
+				</button>
+			</div>
+		</div>
+	</table>
+	</div>
+</div>

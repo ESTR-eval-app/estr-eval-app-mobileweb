@@ -1,0 +1,26 @@
+<div id="questionContainer" class="center-block">
+	<!--Question-->
+	<div id="questionTextPanel" class="well">
+		<h3>{{evaluation.questions[questionIndex].text}}</h3>
+	</div>
+
+
+	<div id="questionScalePanel">
+		<!--Faces Scale-->
+		<div ng-show="evaluation.questions[questionIndex].type === 'Faces'">
+		<img src="./img/faces/face1.png" ng-click="numSelect(1)">
+		<img src="./img/faces/face2.png" ng-click="numSelect(2)">
+		<img src="./img/faces/face4.png" ng-click="numSelect(3)">
+		<img src="./img/faces/face5.png" ng-click="numSelect(4)">
+		</div>
+
+		<!--Descriptive response -->
+		<div class="form-group" ng-show="evaluation.questions[questionIndex].type === 'Descriptive'"> <textarea ng-model="editQuestion.text" class="form-control ng-pristine ng-valid ng-touched" rows="4"></textarea></div>
+	</div>
+</div>
+
+
+	<!-- Navigation -->
+	<button class="btn btn-lg btn-info" style="display:none" id="nextButton" ng-click="nextClick()">
+		Next
+	</button>

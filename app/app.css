@@ -1,11 +1,11 @@
 #nextButton {
 	position: fixed;
-	bottom: 25px;
-	right: 30px;
+	bottom: 35px;
+	right: 35px;
 }
 
 #questionContainer {
-	transform: translateY(120%);
+	transform: translateY(70%);
 }
 
 /*.horizontal-center {*/
