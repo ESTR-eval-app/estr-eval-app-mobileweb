@@ -78,7 +78,6 @@ angular.module('app.questions', ['ngRoute'])
 
     $scope.finishEvalBtnClick = function() {
 
-      $scope.response.date = new Date();
       // TODO ensure name is sent
 
       //todo endpoint does not exist yet
