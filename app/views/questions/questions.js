@@ -11,6 +11,8 @@ angular.module('app.questions', ['ngRoute'])
 
   .controller('QuestionsController', ['$routeParams', '$scope', '$http', '$location', 'envService', function($routeParams, $scope, $http, $location, envService) {
 
+    $scope.response = {};
+
     // reference to response buttons
     $scope.buttons = [4];
 
@@ -44,22 +46,6 @@ angular.module('app.questions', ['ngRoute'])
       }
     })();
 
-
-    ///**
-    // * Creates an array used by the ng-repeat in the surveyitem template to create response buttons.
-    // * @param scaleType the type of scale for the current question
-    // * @returns an array of intergers from 0-5 or 1-9
-    // */
-    //  // returns an array for ng-repeat to iterate through creating scale buttons
-    //scope.provideScaleArray = function (scaleType) {
-    //  var zeroFive = [0, 1, 2, 3, 4, 5];
-    //  var oneNine = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    //  var scaleArray;
-    //  (scaleType == "0-5") ? scaleArray = zeroFive : scaleArray = oneNine;
-    //
-    //  return scaleArray;
-    //};
-
     /**
      * Handler for Next button clicks.
      */
@@ -69,6 +55,11 @@ angular.module('app.questions', ['ngRoute'])
       // todo save response
       //faces?
       //descriptive?
+
+      var questionResponse = {
+        question : $scope.questionIndex,
+        response : $scope.selectedResponse
+      };
 
       //window.localStorage["q" + $scope.evaluation.questions[$scope.questionIndex].id] = parseInt($scope.selectedResponse);
       //console.log("question " + ($scope.questionIndex + 1) + " response saved " + window.localStorage["q" + $scope.evaluation.questions[$scope.questionIndex].id]);
@@ -131,7 +122,13 @@ angular.module('app.questions', ['ngRoute'])
 
       $("#nextButton").fadeIn();
 
+    };
+
+    $scope.playQuestionAudio = function() {
+      var file = $scope.evaluation.questions[questionIndex].audioPath;
+      //TODO play sound
     }
+
   }])
 
 .directive('scaleDirective', function () {

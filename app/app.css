@@ -19,4 +19,21 @@
 
 #questionScalePanel { text-align: center; }
 
-#questionScalePanel img { margin: 30px; }
+#questionScalePanel img { margin: 20px; }
+
+label > input {
+	visibility: hidden;
+	position: absolute;
+}
+
+label > img {
+	border: 10px solid white;
+	border-radius: 50%;
+	padding: 20px;
+}
+
+label > input:checked + img{
+	border: 10px solid green;
+	border-radius: 50%;
+	padding: 20px;
+}
