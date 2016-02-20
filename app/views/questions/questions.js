@@ -80,7 +80,7 @@ angular.module('app.questions', ['ngRoute'])
 
       // TODO ensure name is sent
 
-      //todo endpoint does not exist yet
+      console.log($scope.response);
       $http.post('http:' + envService.read('apiUrl') + '/responses', $scope.response)
         .then(success, fail);
 
