@@ -28,12 +28,17 @@ angular.module('app.questions', ['ngRoute'])
         console.log('retrieved successfully');
         console.log($scope.evaluation);
 
+        // check that evaluation has questions
+        if ($scope.evaluation.questions.length < 1) {
+          alert("There is a problem with this evaluation. Please inform the evaluation facilitator.")
+        }
+
+        // TODO if not anonymous, get name
+
         $scope.response = {
           questionResponses : [$scope.evaluation.questions.length]
         };
 
-        // TODO handle no questions
-        // TODO if not anonymous, get name
       }
 
       function fail(response) {
@@ -70,16 +75,26 @@ angular.module('app.questions', ['ngRoute'])
     }
 
     $scope.finishEvalBtnClick = function() {
-      //todo  send responses
 
-      //todo  show result
-      //todo bind error message to modal?
+      $scope.response.date = new Date();
+      // TODO name
 
-      //todo on success, close modal and show thank you
-      $("#evalCompleteModal").modal("hide");
-      $("#responseSentMessage").show();
+      //todo endpoint does not exist yet
+      $http.post('http:' + envService.read('apiUrl') + '/responses', $scope.response)
+        .then(success, fail);
 
+      function success(response) {
+        console.log(response);
+        console.log('sent successfully');
+        $("#evalCompleteModal").modal("hide");
+        $("#responseSentMessage").show();
+      }
 
+      function fail(response) {
+        console.log(response.data);
+        console.log('sending failed');
+        alert("Sorry, an error occured. Please inform the evaluation facilitator.");
+      }
 
     }
 
