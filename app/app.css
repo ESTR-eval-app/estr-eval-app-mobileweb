@@ -26,9 +26,9 @@ label > input {
 	position: absolute;
 }
 
-label > img {
-	border: 10px solid white;
-	border-radius: 50%;
+label > input + img {
+	border: 10px solid transparent;
+	/*border-radius: 50%;*/
 	padding: 20px;
 }
 
