@@ -21,6 +21,10 @@
 
 #questionScalePanel img { margin: 20px; }
 
+#questionScalePanel p {
+
+}
+
 label > input {
 	visibility: hidden;
 	position: absolute;
