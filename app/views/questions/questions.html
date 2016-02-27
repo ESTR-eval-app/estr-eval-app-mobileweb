@@ -66,6 +66,12 @@
 					ng-model="response.questionResponses[questionIndex]" class="form-control" rows="4"
 					ng-required="true"></textarea></div>
 
+			<!--Not applicable Option-->
+			<label ng-show="evaluation.questions[questionIndex].type === 'Faces' && evaluation.allowNotApplicable == true" class="center-block">
+				<input type="radio" name="faces" value="-1" ng-model="response.questionResponses[questionIndex]"/>
+				<h1>N/A</h1>
+				<p>Not Applicable</p>
+			</label>
 		</div>
 
 	</div>
