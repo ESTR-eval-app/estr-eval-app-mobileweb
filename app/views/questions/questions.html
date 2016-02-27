@@ -1,3 +1,26 @@
+<!--name entry modal-->
+<div class="modal fade" id="enterNameModal" tabindex="-1" role="dialog" aria-labelledby="nameModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="nameModalLabel">Welcome</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<form name="nameForm" novalidate class="form-group col-lg-10">
+							<label for="name">Please enter your name:</label>
+							<input ng-model="response.name" ng-required="true" type="text" class="form-control"
+							       id="name" placeholder="Name">
+							<button type="button" ng-disabled="nameForm.$invalid" class="btn btn-info pull-right"
+							        ng-click="enterNameSubmitBtnClick()">Done
+							</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <!--eval complete change modal-->
 <div class="modal fade" id="evalCompleteModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel">
 	<div class="modal-dialog" role="document">
@@ -11,13 +34,10 @@
 				<p ng-model="resultSendError"></p>
 			</div>
 		</div>
-∂
 	</div>
 </div>
-</div>
 
-
-<form name="questionForm" novalidate>
+<form name="questionForm" novalidate ng-hide="questionIndex < 0">
 	<div class="questionContainer center-block">
 
 		<!--Thank you message-->
@@ -67,7 +87,8 @@
 					ng-required="true"></textarea></div>
 
 			<!--Not applicable Option-->
-			<label ng-show="evaluation.questions[questionIndex].type === 'Faces' && evaluation.allowNotApplicable == true" class="center-block">
+			<label ng-show="evaluation.questions[questionIndex].type === 'Faces' && evaluation.allowNotApplicable == true"
+			       class="center-block">
 				<input type="radio" name="faces" value="-1" ng-model="response.questionResponses[questionIndex]"/>
 				<h1>N/A</h1>
 				<p>Not Applicable</p>

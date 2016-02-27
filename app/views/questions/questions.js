@@ -14,7 +14,7 @@ angular.module('app.questions', ['ngRoute'])
 
 
     // current question number
-    $scope.questionIndex = 0;
+    $scope.questionIndex = -1;
 
     (function getEvalQuestions() {
       var evalId = $routeParams.evalId;
@@ -33,13 +33,23 @@ angular.module('app.questions', ['ngRoute'])
           alert("There is a problem with this evaluation. Please inform the evaluation facilitator.")
         }
 
-        // TODO if not anonymous, get name
-
         $scope.response = {
           evaluationId : $scope.evaluation.id,
           questionResponses : [$scope.evaluation.questions.length]
-          //name :
         };
+
+        $scope.response.questionResponses.forEach(function(element, i, responses) {
+          responses[i] = undefined;
+        });
+
+        if (!$scope.evaluation.isAnonymous) {
+          console.log('need name');
+          $("#enterNameModal").modal("show");
+
+        }
+        else {
+          $scope.questionIndex++;
+        }
 
       }
 
@@ -78,8 +88,6 @@ angular.module('app.questions', ['ngRoute'])
 
     $scope.finishEvalBtnClick = function() {
 
-      // TODO ensure name is sent
-
       console.log($scope.response);
       $http.post('http:' + envService.read('apiUrl') + '/responses', $scope.response)
         .then(success, fail);
@@ -97,6 +105,11 @@ angular.module('app.questions', ['ngRoute'])
         alert("Sorry, an error occured. Please inform the evaluation facilitator.");
       }
 
+    }
+
+    $scope.enterNameSubmitBtnClick = function() {
+      $("#enterNameModal").modal("hide");
+      $scope.questionIndex++;
     }
 
   }]);
