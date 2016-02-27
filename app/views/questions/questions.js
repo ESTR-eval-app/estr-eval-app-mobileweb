@@ -35,8 +35,7 @@ angular.module('app.questions', ['ngRoute'])
 
         $scope.response = {
           evaluationId : $scope.evaluation.id,
-          questionResponses : [$scope.evaluation.questions.length],
-          name : ""
+          questionResponses : [$scope.evaluation.questions.length]
         };
 
         $scope.response.questionResponses.forEach(function(element, i, responses) {
@@ -88,8 +87,6 @@ angular.module('app.questions', ['ngRoute'])
     }
 
     $scope.finishEvalBtnClick = function() {
-
-      // TODO ensure name is sent
 
       console.log($scope.response);
       $http.post('http:' + envService.read('apiUrl') + '/responses', $scope.response)
