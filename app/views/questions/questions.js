@@ -41,9 +41,7 @@ angular.module('app.questions', ['ngRoute'])
 
         $scope.response.questionResponses.forEach(function(element, i, responses) {
           responses[i] = undefined;
-        })
-
-        console.log($scope.response.questionResponses[$scope.questionIndex]);
+        });
 
         if (!$scope.evaluation.isAnonymous) {
           console.log('need name');
@@ -115,8 +113,6 @@ angular.module('app.questions', ['ngRoute'])
     $scope.enterNameSubmitBtnClick = function() {
       $("#enterNameModal").modal("hide");
       $scope.questionIndex++;
-
-      console.log($scope.response.questionResponses[$scope.questionIndex]);
     }
 
   }]);

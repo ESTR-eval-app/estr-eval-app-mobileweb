@@ -8,15 +8,12 @@
 			<div class="modal-body">
 				<div class="row">
 					<form name="nameForm" novalidate class="form-group col-lg-10">
-							<div class="form-group col-lg-10">
 							<label for="name">Please enter your name:</label>
 							<input ng-model="response.name" ng-required="true" type="text" class="form-control"
 							       id="name" placeholder="Name">
 							<button type="button" ng-disabled="nameForm.$invalid" class="btn btn-info pull-right"
 							        ng-click="enterNameSubmitBtnClick()">Done
 							</button>
-
-
 					</form>
 				</div>
 			</div>
@@ -39,10 +36,8 @@
 		</div>
 	</div>
 </div>
-</div>
 
-
-<form name="questionForm" novalidate>
+<form name="questionForm" novalidate ng-hide="questionIndex < 0">
 	<div class="questionContainer center-block">
 
 		<!--Thank you message-->
