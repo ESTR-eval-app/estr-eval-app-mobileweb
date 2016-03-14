@@ -82,8 +82,9 @@ angular.module('app.questions', ['ngRoute'])
     };
 
     $scope.playQuestionAudio = function() {
-      var file = $scope.evaluation.questions[$scope.questionIndex].audioPath;
-      //TODO play sound
+      var url = $scope.evaluation.questions[$scope.questionIndex].audioPath;
+      console.log('playing ' + url);
+      new Audio(url).play();
     }
 
     $scope.finishEvalBtnClick = function() {
