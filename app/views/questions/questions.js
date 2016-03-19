@@ -28,6 +28,12 @@ angular.module('app.questions', ['ngRoute'])
         console.log('retrieved successfully');
         console.log($scope.evaluation);
 
+        // prevent resonses to unavailable evaluations
+        if ($scope.evaluation.status != "Published") {
+          $location.path("/select");
+          return;
+        }
+
         // check that evaluation has questions
         if ($scope.evaluation.questions.length < 1) {
           alert("There is a problem with this evaluation. Please inform the evaluation facilitator.")
