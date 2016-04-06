@@ -9,10 +9,16 @@ angular.module('app.select', ['ngRoute'])
     });
   }])
 
-  .controller('SelectController', ['$scope', '$http', '$location', 'envService', function($scope, $http, $location, envService) {
+  .controller('SelectController', [
+    '$scope',
+    '$http',
+    '$location',
+    'endpointConfig',
+    function ($scope, $http, $location, endpointConfig) {
 
     $http
-      .get('http:' + envService.read('apiUrl') + '/evaluations').then(evaluationsRetrieveSuccess, evaluationsRetrieveFailure);
+      .get(endpointConfig.apiEndpoint + '/evaluations')
+      .then(evaluationsRetrieveSuccess, evaluationsRetrieveFailure);
 
     function evaluationsRetrieveSuccess(response) {
       $scope.evaluations = [];

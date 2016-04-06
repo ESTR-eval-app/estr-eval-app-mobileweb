@@ -9,9 +9,13 @@ angular.module('app.questions', ['ngRoute'])
     });
   }])
 
-  .controller('QuestionsController', ['$routeParams', '$scope', '$http', '$location', 'envService', function($routeParams, $scope, $http, $location, envService) {
-
-
+  .controller('QuestionsController', [
+    '$routeParams',
+    '$scope',
+    '$http',
+    '$location',
+    'endpointConfig',
+    function ($routeParams, $scope, $http, $location, endpointConfig) {
 
     // current question number
     $scope.questionIndex = -1;
@@ -19,7 +23,7 @@ angular.module('app.questions', ['ngRoute'])
     (function getEvalQuestions() {
       var evalId = $routeParams.evalId;
       $http
-        .get('http:' + envService.read('apiUrl') + '/evaluations/' + evalId)
+        .get(endpointConfig.apiEndpoint + '/evaluations/' + evalId)
         .then(success, fail);
 
       function success(response) {
@@ -96,7 +100,7 @@ angular.module('app.questions', ['ngRoute'])
     $scope.finishEvalBtnClick = function() {
 
       console.log($scope.response);
-      $http.post('http:' + envService.read('apiUrl') + '/responses', $scope.response)
+      $http.post(endpointConfig.apiEndpoint + '/responses', $scope.response)
         .then(success, fail);
 
       function success(response) {
