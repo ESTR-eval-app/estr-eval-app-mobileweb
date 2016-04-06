@@ -16,21 +16,23 @@ angular.module('app.select', ['ngRoute'])
     'endpointConfig',
     function ($scope, $http, $location, endpointConfig) {
 
-    $http
+      /**
+       * Retrieve all published evaluations
+       */
+      $http
       .get(endpointConfig.apiEndpoint + '/evaluations')
       .then(evaluationsRetrieveSuccess, evaluationsRetrieveFailure);
 
     function evaluationsRetrieveSuccess(response) {
       $scope.evaluations = [];
-      response.data.forEach(function(current, index, array) {
-        if (current.status == "Published")
-          $scope.evaluations.push(current)
+      response.data.forEach(function (evaluation) {
+        if (evaluation.status == "Published")
+          $scope.evaluations.push(evaluation)
       });
     }
 
     function evaluationsRetrieveFailure(response) {
       console.log(response);
-
       if (response.status == 404) {
         console.log('no evaluations found');
       }
@@ -39,6 +41,10 @@ angular.module('app.select', ['ngRoute'])
       }
     }
 
+      /**
+       * Handler for start evaluation button.
+       * @param id id of evaluation to begin
+       */
     $scope.startEvaluation = function(id) {
       $location.path("/questions/" + id);
     }
