@@ -62,24 +62,27 @@
 			<!--Faces Scale-->
 			<div ng-show="evaluation.questions[currentQuestionNum].type === 'Faces'">
 				<label>
-					<input type="radio" name="faces" value="1" ng-model="response.questionResponses[questionIndex]"
+					<input type="radio" name="faces" value="1" ng-model="response.questionResponses[currentQuestionNum]"
 					       ng-required="true"/>
 					<img src="./img/faces/face1.gif"/>
 					<p>Strongly Disagree</p>
 				</label>
 
 				<label>
-					<input type="radio" name="faces" value="2" ng-model="response.questionResponses[questionIndex]"/>
+					<input type="radio" name="faces" value="2"
+					       ng-model="response.questionResponses[currentQuestionNum]"/>
 					<img src="./img/faces/face2.gif"/>
 					<p>Disagree</p>
 				</label>
 				<label>
-					<input type="radio" name="faces" value="3" ng-model="response.questionResponses[questionIndex]"/>
+					<input type="radio" name="faces" value="3"
+					       ng-model="response.questionResponses[currentQuestionNum]"/>
 					<img src="./img/faces/face3.gif"/>
 					<p>Agree</p>
 				</label>
 				<label>
-					<input type="radio" name="faces" value="4" ng-model="response.questionResponses[questionIndex]"/>
+					<input type="radio" name="faces" value="4"
+					       ng-model="response.questionResponses[currentQuestionNum]"/>
 					<img src="./img/faces/face4.gif"/>
 					<p>Strongly Agree</p>
 				</label>
@@ -89,14 +92,16 @@
 				<!--Not applicable Option-->
 				<label ng-show="evaluation.questions[currentQuestionNum].type === 'Faces' && evaluation.allowNotApplicable == true"
 				       >
-					<input type="radio" name="faces" value="NA" ng-model="response.questionResponses[questionIndex]"/>
+					<input type="radio" name="faces" value="NA"
+					       ng-model="response.questionResponses[currentQuestionNum]"/>
 					<h1>N/A</h1>
 					<p>Not Applicable</p>
 				</label>
 				<!--Not applicable Option-->
 				<label ng-show="evaluation.questions[currentQuestionNum].type === 'Faces' && evaluation.allowDontKnow == true"
 				       >
-					<input type="radio" name="faces" value="DK" ng-model="response.questionResponses[questionIndex]"/>
+					<input type="radio" name="faces" value="DK"
+					       ng-model="response.questionResponses[currentQuestionNum]"/>
 					<h1>?</h1>
 					<p>Don't Know</p>
 				</label>
@@ -104,7 +109,7 @@
 
 			<!--Descriptive response -->
 			<div class="form-group" ng-show="evaluation.questions[currentQuestionNum].type === 'Descriptive'"><textarea
-					ng-model="response.questionResponses[questionIndex]" class="form-control" rows="4"
+					ng-model="response.questionResponses[currentQuestionNum]" class="form-control" rows="4"
 					ng-required="true"></textarea></div>
 
 
