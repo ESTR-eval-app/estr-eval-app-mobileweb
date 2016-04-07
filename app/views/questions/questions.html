@@ -1,5 +1,6 @@
 <!--name entry modal-->
-<div class="modal fade" id="enterNameModal" tabindex="-1" role="dialog" aria-labelledby="nameModalLabel">
+<div class="modal fade" id="enterNameModal" tabindex="-1" role="dialog" aria-labelledby="nameModalLabel"
+     data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -22,7 +23,8 @@
 </div>
 
 <!--eval complete change modal-->
-<div class="modal fade" id="evalCompleteModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel">
+<div class="modal fade" id="evalCompleteModal" tabindex="-1" role="dialog" aria-labelledby="completedModalLabel"
+     data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -111,7 +113,8 @@
 	</div>
 
 	<!-- Navigation -->
-	<button class="btn btn-lg btn-info" ng-hide="questionForm.$invalid || questionForm.$pristine" type="submit"
+	<button class="btn btn-lg btn-info"
+	        ng-hide="questionForm.$invalid || questionForm.$pristine || isEndOfSurveyReached()" type="submit"
 	        id="nextButton" ng-click="nextBtnClick()">
 		Next
 	</button>

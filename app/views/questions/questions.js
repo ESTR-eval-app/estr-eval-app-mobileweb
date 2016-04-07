@@ -86,7 +86,7 @@ angular.module('app.questions', ['ngRoute'])
       $scope.currentQuestionNum++;
 
       // check if end of survey reached
-      if ($scope.currentQuestionNum + 1 > $scope.evaluation.questions.length) {
+      if ($scope.isEndOfSurveyReached()) {
         console.log("End of survey");
 
         // if completed
@@ -104,6 +104,14 @@ angular.module('app.questions', ['ngRoute'])
       new Audio(url).play();
     };
 
+      /**
+       * Checks if it is the end of the survey
+       * @returns true if there are no more questions, false otherwise
+       */
+      $scope.isEndOfSurveyReached = function () {
+        return $scope.currentQuestionNum + 1 > $scope.evaluation.questions.length;
+      };
+      
       /**
        * Handler for finish button. Finalizes responses and sends them to the server.
        */
