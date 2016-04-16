@@ -61,30 +61,13 @@
 		<div id="questionScalePanel">
 			<!--Faces Scale-->
 			<div ng-show="evaluation.questions[currentQuestionNum].type === 'Faces'">
-				<label>
-					<input type="radio" name="faces" value="1" ng-model="response.questionResponses[currentQuestionNum]"
-					       ng-required="true"/>
-					<img src="./img/faces/face1.gif"/>
-					<p>Strongly Disagree</p>
-				</label>
 
-				<label>
-					<input type="radio" name="faces" value="2"
-					       ng-model="response.questionResponses[currentQuestionNum]"/>
-					<img src="./img/faces/face2.gif"/>
-					<p>Disagree</p>
-				</label>
-				<label>
-					<input type="radio" name="faces" value="3"
-					       ng-model="response.questionResponses[currentQuestionNum]"/>
-					<img src="./img/faces/face3.gif"/>
-					<p>Agree</p>
-				</label>
-				<label>
-					<input type="radio" name="faces" value="4"
-					       ng-model="response.questionResponses[currentQuestionNum]"/>
-					<img src="./img/faces/face4.gif"/>
-					<p>Strongly Agree</p>
+				<label ng-repeat="item in scale track by $index">
+					<input type="radio" name="faces" value="{{$index +1}}"
+					       ng-model="response.questionResponses[currentQuestionNum]"
+					       ng-required="true"/>
+					<img src="{{'./img/faces/face' + ($index +1) + '.gif'}}"/>
+					<p>{{item}}</p>
 				</label>
 
 				<br>

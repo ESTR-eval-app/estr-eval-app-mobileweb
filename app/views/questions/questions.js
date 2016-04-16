@@ -18,6 +18,7 @@ angular.module('app.questions', ['ngRoute'])
     function ($routeParams, $scope, $http, $location, endpointConfig) {
 
       $scope.currentQuestionNum = -1;
+      $scope.scale = ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"];
 
       /**
        * Retrieves the questions in the evaluation
