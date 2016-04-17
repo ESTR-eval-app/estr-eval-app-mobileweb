@@ -96,15 +96,21 @@
 					ng-required="true"></textarea></div>
 
 
+			<div class="row">
+				<!-- Navigation -->
+				<button class="btn btn-lg btn-info pull-right"
+				        ng-hide="questionForm.$invalid || questionForm.$pristine || isEndOfSurveyReached()"
+				        type="submit"
+				        id="nextButton" ng-click="nextBtnClick()">
+					Next
+				</button>
+
+			</div>
+
 		</div>
+
 
 	</div>
 
-	<!-- Navigation -->
-	<button class="btn btn-lg btn-info"
-	        ng-hide="questionForm.$invalid || questionForm.$pristine || isEndOfSurveyReached()" type="submit"
-	        id="nextButton" ng-click="nextBtnClick()">
-		Next
-	</button>
 
 </form>

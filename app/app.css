@@ -1,24 +1,36 @@
 #nextButton {
-	position: fixed;
-	bottom: 55px;
-	right: 35px;
+	margin-right: 35px;
 }
 
 .questionContainer {
-	transform: translateY(25%);
+	transform: translateY(5%);
 }
 
 #questionTextPanel { text-align: center; }
 
-#questionScalePanel { text-align: center; }
+#questionTextPanel h3 {
+	font-size: 1.5em;
+}
+
+#questionScalePanel {
+	text-align: center;
+}
 
 #questionScalePanel img {
-	margin: 0 15px 5px 15px;
+	margin: 0 5px 5px 5px;
+	width: calc(100vw / 7);
+}
+
+#questionScalePanel label {
 }
 
 #questionScalePanel h1 {
 	margin: 0 15px 5px 15px;
 	display: inline-table;
+}
+
+#questionScalePanel p {
+	font-size: 0.7em;
 }
 
 #enterNameModal button {
@@ -31,27 +43,29 @@ label > input {
 }
 
 label > input + img {
-	border: 10px solid transparent;
+	border: calc((100vw / 7) / 12) solid transparent;
 	/*border-radius: 50%;*/
-	padding: 20px;
+	padding: calc((100vw / 7) / 7);
 }
 
 label > input:checked + img{
-	border: 10px solid green;
+	border: calc((100vw / 7) / 12) solid green;
 	border-radius: 50%;
-	padding: 20px;
+	padding: calc((100vw / 7) / 7);
 }
 
 label > input + h1 {
-	border: 10px solid transparent;
+	border: calc((100vw / 7) / 13) solid transparent;
 	/*border-radius: 50%;*/
-	padding: 20px;
+	font-size: 1.8em;
+	padding: calc((100vw / 7) / 7);
 }
 
 label > input:checked + h1 {
-	border: 10px solid green;
+	border: calc((100vw / 7) / 13) solid green;
 	border-radius: 50%;
-	padding: 20px;
+	font-size: 1.8em;
+	padding: calc((100vw / 7) / 7);
 }
 
 /* Sticky footer styles
